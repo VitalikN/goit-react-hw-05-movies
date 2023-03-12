@@ -19,21 +19,24 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { Movies } from '../pages/Movies';
 import { Cast } from './Cast/Cast';
+import { NotFound } from './NotFound/NotFound';
 import { Reviews } from './Reviews/Reviews';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 
-export const App = () => {
+const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="goit-react-hw-05-movies/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="Movies" element={<Movies />}>
-            <Route path="Cast" element={<Cast />} />
-            <Route path="Reviews" element={<Reviews />} />
+          <Route path="movies" element={<Movies />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
       </Routes>
     </div>
   );
 };
+export default App;
