@@ -1,6 +1,6 @@
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { movieDetailsGet } from 'components/Service/ApiGet';
+import { movieDetailsGet } from 'Service/ApiGet';
 import { Img_url } from 'pages/Home';
 
 export const MovieDetails = () => {

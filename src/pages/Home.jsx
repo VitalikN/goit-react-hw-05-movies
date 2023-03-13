@@ -1,4 +1,4 @@
-import { trendingGet } from 'components/Service/ApiGet';
+import { trendingGet } from 'Service/ApiGet';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
