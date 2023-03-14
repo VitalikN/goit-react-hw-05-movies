@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const API_KEY = '1174e437242bb46ea8831e578adaacd1';
 
-export const trendingGet = async () => {
+export const movieTrendingGet = async () => {
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`
   );
@@ -27,6 +27,9 @@ export const movieDetailsGet = async id => {
   const { data } =
     await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US
   `);
-
+  if (data.code === 404) {
+    console.log('error');
+  }
+  console.log(data);
   return data;
 };

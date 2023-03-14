@@ -1,21 +1,19 @@
-import { trendingGet } from 'Service/ApiGet';
+import { movieTrendingGet } from 'Service/ApiGet';
 import { useState, useEffect } from 'react';
 
 import { MovieList } from 'components/MovieList/MovieList';
 
 export const Home = () => {
-  // const [trendingList, setTrendingList] = useState([]);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const trending = async () => {
+    const movieTrending = async () => {
       try {
-        const { results } = await trendingGet();
-        console.log(results);
+        const { results } = await movieTrendingGet();
         setMovies(results);
       } catch (error) {}
     };
-    trending();
+    movieTrending();
   }, []);
 
   return <MovieList movies={movies} />;

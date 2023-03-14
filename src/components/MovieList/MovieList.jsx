@@ -5,6 +5,7 @@ import {
   Item,
   Img,
   Text,
+  StyledLink,
 } from 'components/MovieList/MovieList.styled.jsx';
 
 export const MovieList = ({ movies }) => {
@@ -14,10 +15,10 @@ export const MovieList = ({ movies }) => {
       <List>
         {movies.map(({ id, poster_path, title, name }) => (
           <Item key={`${id}`}>
-            <Link id={`${id}`} to={`/movies/${id}`}>
+            <StyledLink id={`${id}`} to={`/movies/${id}`}>
               <Img src={Img_url + poster_path} alt={title ?? name} />
               <Text>{title ?? name} </Text>
-            </Link>
+            </StyledLink>
           </Item>
         ))}
       </List>

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -7,6 +8,7 @@ export const Container = styled.div`
 
 export const List = styled.ul`
   display: flex;
+
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
@@ -18,7 +20,9 @@ export const List = styled.ul`
   margin-left: auto;
   margin-right: auto;
 `;
-
+export const StyledLink = styled(NavLink)`
+  text-decoration: none;
+`;
 export const Item = styled.li`
   width: 300px;
   height: 450px;
@@ -39,7 +43,7 @@ export const Img = styled.img`
 
 export const Text = styled.p`
   padding: 10px;
-  color: black;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
 `;

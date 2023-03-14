@@ -15,6 +15,7 @@ export const Movies = () => {
     async function MoviesQuery() {
       try {
         const { results } = await movieSearch(query);
+
         setMovies(results);
       } catch (error) {}
     }
