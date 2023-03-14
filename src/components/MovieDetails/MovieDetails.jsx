@@ -1,12 +1,13 @@
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { movieDetailsGet } from 'Service/ApiGet';
-import { Img_url } from 'pages/Home';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setmovie] = useState([]);
+
   useEffect(() => {
+    if (!movieId) return;
     const MovieDetailsList = async () => {
       try {
         const data = await movieDetailsGet(movieId);
@@ -15,7 +16,10 @@ export const MovieDetails = () => {
     };
     MovieDetailsList();
   }, [movieId]);
+  console.log(movieId);
   const { id, name, title, poster_path } = movie;
+  const Img_url = 'https://image.tmdb.org/t/p/w500';
+
   return (
     <section>
       <button>go back</button>
@@ -27,6 +31,7 @@ export const MovieDetails = () => {
           width={200}
           height={300}
         />
+
         <p>{name ?? title}</p>
       </div>
 

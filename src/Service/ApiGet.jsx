@@ -17,14 +17,16 @@ export const trendingGet = async () => {
 };
 //2.пошук фільму за ключовим словом на сторінці фільмів.
 //https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+export const movieSearch = async searchQuery => {
+  const { data } = await axios.get(`
+https://api.themoviedb.org/3/${searchQuery}/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`);
+  return data;
+};
 
-//
-//3.запит повної інформації про фільм для сторінки кінофільму.
-export const movieDetailsGet = async movieId => {
+export const movieDetailsGet = async id => {
   const { data } =
-    await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US
+    await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US
   `);
 
-  console.log(data);
   return data;
 };

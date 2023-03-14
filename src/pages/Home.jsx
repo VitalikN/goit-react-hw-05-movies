@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, List, Item, Img, Text } from './Home.styled';
 
-export const Img_url = 'https://image.tmdb.org/t/p/w500';
+const Img_url = 'https://image.tmdb.org/t/p/w500';
 export const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
 
@@ -23,10 +23,10 @@ export const Home = () => {
     <Container>
       <List>
         {trendingList.map(({ id, poster_path, title, name }) => (
-          <Item key={id} id={id}>
-            <Link to={`/goit-react-hw-05-movies/movies/:${id}`}>
+          <Item key={`${id}`}>
+            <Link id={`${id}`} to={`movies/${id}`}>
               <Img src={Img_url + poster_path} alt={title ?? name} />
-              <Text>{title ?? name}</Text>
+              <Text>{title ?? name} </Text>
             </Link>
           </Item>
         ))}
