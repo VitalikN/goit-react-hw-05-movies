@@ -16,7 +16,7 @@ export const MovieDetails = () => {
     };
     MovieDetailsList();
   }, [movieId]);
-  console.log(movieId);
+
   const { id, name, title, poster_path } = movie;
   const Img_url = 'https://image.tmdb.org/t/p/w500';
 

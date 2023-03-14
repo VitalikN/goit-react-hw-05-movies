@@ -15,11 +15,11 @@ export const trendingGet = async () => {
 
   return data;
 };
-//2.пошук фільму за ключовим словом на сторінці фільмів.
-//https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+
 export const movieSearch = async searchQuery => {
   const { data } = await axios.get(`
-https://api.themoviedb.org/3/${searchQuery}/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`);
+https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`);
+
   return data;
 };
 
