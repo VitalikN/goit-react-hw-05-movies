@@ -1,5 +1,5 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
 import { movieDetailsGet } from 'Service/ApiGet';
 import {
   Container,
@@ -8,20 +8,32 @@ import {
   Subject,
   Text,
   List,
+  ListLink,
   Item,
+  StyledLink,
 } from './MovieDetails.styled';
+import { BackLink } from 'components/BackLink/BackLink';
+import { Spinner } from 'components/Spinner/Spinner';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setmovie] = useState([]);
+  const [isLoader, setIsLoader] = useState(false);
+
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     if (!movieId) return;
+    setIsLoader(true);
     const MovieDetailsList = async () => {
       try {
         const data = await movieDetailsGet(movieId);
         setmovie(data);
-      } catch (error) {}
+      } catch (error) {
+      } finally {
+        setIsLoader(false);
+      }
     };
     MovieDetailsList();
   }, [movieId]);
@@ -40,8 +52,8 @@ export const MovieDetails = () => {
 
   return (
     <section>
-      <button>go back</button>
-
+      <BackLink to={backLinkHref}>Go back to movies</BackLink>
+      {isLoader && <Spinner />}
       <Container id={id}>
         <div>
           <Img src={Img_url + poster_path} alt={name ?? title} />
@@ -58,18 +70,26 @@ export const MovieDetails = () => {
             {genres &&
               genres.map(({ id, name }) => <Item key={id}>{name}</Item>)}
           </List>
+
+          <ListLink>
+            <li>
+              <StyledLink to="cast" state={{ from: location.state?.from }}>
+                Cast
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to="reviews" state={{ from: location.state?.from }}>
+                Reviews
+              </StyledLink>
+            </li>
+          </ListLink>
         </div>
       </Container>
 
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading subpage...</div>}>
+        <Outlet />
+      </Suspense>
     </section>
   );
 };
+export default MovieDetails;

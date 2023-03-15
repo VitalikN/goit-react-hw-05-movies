@@ -1,4 +1,5 @@
 import { MovieList } from 'components/MovieList/MovieList';
+import { Spinner } from 'components/Spinner/Spinner';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { movieSearch } from 'Service/ApiGet';
@@ -9,22 +10,24 @@ import {
   SearchFormButtonLabel,
 } from './Movies.styled';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [isLoader, setIsLoader] = useState(false);
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    // if (!query) return;
     if (searchParams.get('searchQuery') === null) return;
     const searchTitle = searchParams.get('searchQuery');
-
+    setIsLoader(true);
     async function MoviesQuery() {
       try {
         const { results } = await movieSearch(searchTitle);
         setMovies(results);
-      } catch (error) {}
+      } catch (error) {
+      } finally {
+        setIsLoader(false);
+      }
     }
 
     MoviesQuery();
@@ -66,6 +69,8 @@ export const Movies = () => {
         </SearchForm>
       </section>
       {movies && <MovieList movies={movies} />}
+      {isLoader && <Spinner />}
     </>
   );
 };
+export default Movies;
