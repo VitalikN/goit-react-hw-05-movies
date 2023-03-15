@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -11,38 +10,50 @@ export const List = styled.ul`
 
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 35px;
   max-width: calc(100vw - 48px);
 
+  margin: 0 auto;
   padding: 0;
   list-style: none;
   margin-left: auto;
   margin-right: auto;
 `;
-export const StyledLink = styled(NavLink)`
-  text-decoration: none;
-`;
+
 export const Item = styled.li`
-  width: 300px;
-  height: 450px;
-  border-radius: 10px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  width: 180px;
+  height: 180px;
+
   transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
-    transform: scale(1.04);
+    transform: scale(1.1);
   }
 `;
 export const Img = styled.img`
-  width: 300px;
-  height: 400px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 10px 10px 0 0;
+  /* border-radius: 10px 10px 0 0; */
+`;
+export const Title = styled.h2`
+  padding: 5px;
+
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    color: #99a4f7;
+  }
 `;
 
 export const Text = styled.p`
-  padding: 10px;
-  color: #fff;
+  padding: 2px;
+
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    color: #99a4f7;
+  }
 `;

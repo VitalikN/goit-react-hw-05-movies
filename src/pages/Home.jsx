@@ -11,7 +11,9 @@ export const Home = () => {
       try {
         const { results } = await movieTrendingGet();
         setMovies(results);
-      } catch (error) {}
+      } catch (error) {
+        console.log('error');
+      }
     };
     movieTrending();
   }, []);

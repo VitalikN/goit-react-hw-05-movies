@@ -2,30 +2,36 @@ import { MovieList } from 'components/MovieList/MovieList';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { movieSearch } from 'Service/ApiGet';
+import {
+  Input,
+  SearchForm,
+  SearchFormButton,
+  SearchFormButtonLabel,
+} from './Movies.styled';
 
 export const Movies = () => {
-  const [params, setParams] = useSearchParams();
-  const saveSearch = params.get('movie') ?? '';
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [query, setQuery] = useState(saveSearch);
+  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    if (!query) return;
+    // if (!query) return;
+    if (searchParams.get('searchQuery') === null) return;
+    const searchTitle = searchParams.get('searchQuery');
+
     async function MoviesQuery() {
       try {
-        const { results } = await movieSearch(query);
-
+        const { results } = await movieSearch(searchTitle);
         setMovies(results);
       } catch (error) {}
     }
 
     MoviesQuery();
-  }, [query]);
+  }, [searchParams]);
 
   const handleOnChange = evt => {
     setQuery(evt.target.value);
-    setParams({ movie: evt.target.value });
   };
 
   const handleSubmit = e => {
@@ -35,27 +41,29 @@ export const Movies = () => {
       alert('спробуй ще ');
       return;
     }
-    setParams({ query });
+    setSearchParams({ searchQuery: query });
+
     setQuery('');
   };
 
   return (
     <>
       <section>
-        <form onSubmit={handleSubmit}>
-          <input
+        <SearchForm onSubmit={handleSubmit}>
+          <Input
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            // name="searchQuery"
+            name="searchQuery"
             value={query}
             onChange={handleOnChange}
           />
-          <button type="submit">
-            <span>Search</span>
-          </button>
-        </form>
+          <SearchFormButton type="submit">
+            Search
+            <SearchFormButtonLabel></SearchFormButtonLabel>
+          </SearchFormButton>
+        </SearchForm>
       </section>
       {movies && <MovieList movies={movies} />}
     </>
