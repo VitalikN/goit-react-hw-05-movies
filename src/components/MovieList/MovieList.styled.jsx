@@ -32,12 +32,20 @@ export const Item = styled.li`
   &:hover {
     transform: scale(1.04);
   }
+  @media (max-width: 450px) {
+    width: 200px;
+    height: 350px;
+  }
 `;
 export const Img = styled.img`
   width: 300px;
   height: 400px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
+  @media (max-width: 450px) {
+    width: 200px;
+    height: 300px;
+  }
 `;
 
 export const Text = styled.p`

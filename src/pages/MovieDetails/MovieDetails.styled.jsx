@@ -3,7 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
-  padding: 25px 40px;
+  padding: 25px 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export const Img = styled.img`
   width: 300px;
@@ -12,6 +18,10 @@ export const Img = styled.img`
   transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     transform: scale(1.04);
+  }
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 300px;
   }
 `;
 
@@ -57,10 +67,10 @@ export const Item = styled.li`
 
 export const StyledLink = styled(NavLink)`
   color: #9d99cd68;
-  /* margin: 25px; */
-  padding: 25px;
-  font-size: 25px;
-  font-weight: 700;
+
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
   text-decoration: none;
   transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -80,4 +90,13 @@ export const ListLink = styled.ul`
   justify-content: start;
   align-items: center;
   list-style: none;
+`;
+export const Box = styled.div`
+  display: grid;
+  place-items: center;
+  margin: 25px;
+
+  font-size: 25px;
+  font-weight: 700;
+  color: #99a4f7;
 `;

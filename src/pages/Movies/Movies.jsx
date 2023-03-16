@@ -1,9 +1,14 @@
 import { MovieList } from 'components/MovieList/MovieList';
+import { NotFound } from 'components/NotFound/NotFound';
 import { Spinner } from 'components/Spinner/Spinner';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 import { movieSearch } from 'Service/ApiGet';
+import { Toaster } from 'react-hot-toast';
+import { BiSearchAlt2 } from 'react-icons/bi';
 import {
+  Section,
   Input,
   SearchForm,
   SearchFormButton,
@@ -15,6 +20,8 @@ const Movies = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState(null);
+  const [error, setError] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(null);
 
   useEffect(() => {
     if (searchParams.get('searchQuery') === null) return;
@@ -23,8 +30,12 @@ const Movies = () => {
     async function MoviesQuery() {
       try {
         const { results } = await movieSearch(searchTitle);
+        if (results.length === 0) {
+          setIsEmpty(true);
+        }
         setMovies(results);
       } catch (error) {
+        setError(error.message);
       } finally {
         setIsLoader(false);
       }
@@ -41,7 +52,7 @@ const Movies = () => {
     e.preventDefault();
 
     if (query.trim() === '') {
-      alert('спробуй ще ');
+      toast.error(`Something went wrong Try again 😭`);
       return;
     }
     setSearchParams({ searchQuery: query });
@@ -51,7 +62,7 @@ const Movies = () => {
 
   return (
     <>
-      <section>
+      <Section>
         <SearchForm onSubmit={handleSubmit}>
           <Input
             type="text"
@@ -63,13 +74,30 @@ const Movies = () => {
             onChange={handleOnChange}
           />
           <SearchFormButton type="submit">
-            Search
+            <BiSearchAlt2 />
             <SearchFormButtonLabel></SearchFormButtonLabel>
           </SearchFormButton>
         </SearchForm>
-      </section>
+      </Section>
       {movies && <MovieList movies={movies} />}
       {isLoader && <Spinner />}
+      {isEmpty && <NotFound children={`Something went wrong Try again 😭`} />}
+      {error && (
+        <NotFound children={`Something went wrong Try again later.😭`} />
+      )}
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          className: '',
+          duration: 2000,
+          style: {
+            background: ' #99a4f7',
+            color: '#fff',
+            fontSize: '19px',
+            fontWeight: '400',
+          },
+        }}
+      />
     </>
   );
 };

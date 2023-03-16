@@ -27,3 +27,13 @@ export const StyledLink = styled(NavLink)`
     color: #99a4f7;
   }
 `;
+
+export const Box = styled.div`
+  display: grid;
+  place-items: center;
+  margin: 25px;
+
+  font-size: 25px;
+  font-weight: 700;
+  color: #99a4f7;
+`;

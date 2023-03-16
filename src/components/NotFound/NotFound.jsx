@@ -1,3 +1,5 @@
-export const NotFound = () => {
-  return <h2> NotFound</h2>;
+import { Subject } from './NotFound.styled';
+
+export const NotFound = ({ children }) => {
+  return <>{<Subject> {children}</Subject>}</>;
 };

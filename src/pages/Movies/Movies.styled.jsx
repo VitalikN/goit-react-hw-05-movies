@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 
+export const Section = styled.section`
+  padding: 20px;
+`;
 export const SearchForm = styled.form`
   display: flex;
   justify-content: center;
@@ -7,6 +10,7 @@ export const SearchForm = styled.form`
   margin: 0 auto;
   width: 100%;
   max-width: 450px;
+
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
