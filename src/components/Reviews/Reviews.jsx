@@ -1,7 +1,7 @@
 import { NotFound } from 'components/NotFound/NotFound';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { reviewsGet } from 'Service/ApiGet';
+import { reviewsGet } from 'service/ApiGet';
 import { ListReviews } from './ListReviews';
 
 const Reviews = () => {

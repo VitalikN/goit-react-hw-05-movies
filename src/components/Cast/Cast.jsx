@@ -1,7 +1,7 @@
 import { NotFound } from 'components/NotFound/NotFound';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { castGet } from 'Service/ApiGet';
+import { castGet } from 'service/ApiGet';
 import { CastList } from './CastList';
 
 const Cast = () => {

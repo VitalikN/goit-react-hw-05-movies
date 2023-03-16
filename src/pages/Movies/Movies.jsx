@@ -4,7 +4,7 @@ import { Spinner } from 'components/Spinner/Spinner';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
-import { movieSearch } from 'Service/ApiGet';
+import { movieSearch } from 'service/ApiGet';
 import { Toaster } from 'react-hot-toast';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import {

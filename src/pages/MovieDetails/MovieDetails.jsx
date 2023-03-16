@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { Suspense, useEffect, useState } from 'react';
-import { movieDetailsGet } from 'Service/ApiGet';
+import { movieDetailsGet } from 'service/ApiGet';
 import {
   Container,
   Img,
@@ -67,9 +67,10 @@ const MovieDetails = () => {
             <Img src={Img_url + poster_path} alt={name ?? title} />
           </div>
           <div>
-            <Title>
-              {name ?? title} {release_date && `(${parseInt(release_date)})`}
-            </Title>
+            <Title>{name ?? title}</Title>
+            {release_date && (
+              <Subject>The premiere of the film {`${release_date}`}</Subject>
+            )}
             <Subject>User score: {Math.round(vote_average * 10)}%</Subject>
             <Subject>Overview</Subject>
             <Text>{overview}</Text>

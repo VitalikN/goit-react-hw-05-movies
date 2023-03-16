@@ -1,4 +1,4 @@
-import { movieTrendingGet } from 'Service/ApiGet';
+import { movieTrendingGet } from 'service/ApiGet';
 import { useState, useEffect } from 'react';
 
 import { MovieList } from 'components/MovieList/MovieList';
